@@ -1,11 +1,24 @@
 var express = require('express');
 var router = express.Router();
-var app = express();
+var Designer = require('../models/designer');
+
+// middleware to use for all requests
+router.use(function(req,res,next){
+  //log request
+  console.log("request is happening");
+  next(); // go to the next routes and do not stop here
+
+});
+// test route to make sure everything is working: url /api
+router.get("/", function(req,res){
+  res.json({ message: "designers home"});
+});
+
 
 //---------------------------------------------------
 //Routes for designers
 
-router.route("/designers")
+router.route("/all")
     .post(function(req,res){
 // create a new instance of the Designer Model
     var designer = new Designer();
@@ -34,7 +47,7 @@ router.route("/designers")
             }
         });
     });
-router.route('/designers/:designer_id')
+router.route('/all/:designer_id')
     // get a single designer
     .get(function(req,res){
        Designer.findById(req.params.designer_id, function(err,designer){
@@ -78,4 +91,5 @@ router.route('/designers/:designer_id')
 
 
 //---------------------------------------------------
+
 module.exports = router;

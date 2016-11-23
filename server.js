@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var users = require('./routes/users');
 var Designer = require('./api/models/designer');
-var designers = require('./api/api.designers');
+var route_designers = require('./api/routes/api_designers');
 var app = express();
 
 
@@ -26,7 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //---------------------------------------------------
 // set our port
-//var port = process.env.PORT || 3000;
+var port = process.env.PORT || 3000;
 //connect to the moongoose server
 var mongoose = require('mongoose');
 var url = 'mongodb://localhost:27017/facelyft-dev';
@@ -51,29 +51,6 @@ var gracefulShutdown = function(msg, callback){
     });
 };
 //---------------------------------------------------
-
-
-var router = express.Router();
-
-
-// middleware to use for all requests
-router.use(function(req,res,next){
-  //log request
-  console.log("request is happening");
-  next(); // go to the next routes and do not stop here
-
-});
-
-// test route to make sure everything is working: url /api
-router.get("/", function(req,res){
-  res.json({ message: "our api is working correctly "});
-});
-
-//get home page
-/*router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});*/
-
 
 
 //---------------------------------------------------
@@ -110,10 +87,9 @@ app.use(function(err, req, res, next) {
 */
 //---------------------------------------------------
 //Register our routes for our api
-app.use('/api',router);
+app.use('/api/designers',route_designers);
 
-
-//app.listen(port);
+app.listen(port);
 //console.log('App is launching on port :  ' + port);
 module.exports = app;
 //---------------------------------------------------
