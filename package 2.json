@@ -1,0 +1,25 @@
+{
+  "name": "BTS-HipHop",
+  "version": "1.0.0",
+  "description": "Behind The Scenes Hip Hop",
+  "devDependencies": {
+    "browserify": "*",
+    "connect-livereload": "*",
+    "grunt": "~0.4.4",
+    "grunt-browserify": "*",
+    "grunt-cli": "^0.1.13",
+    "grunt-concurrent": "*",
+    "grunt-contrib-clean": "*",
+    "grunt-contrib-concat": "*",
+    "grunt-contrib-connect": "*",
+    "grunt-contrib-jshint": "*",
+    "grunt-contrib-sass": "*",
+    "grunt-contrib-uglify": "*",
+    "grunt-contrib-watch": "*",
+    "grunt-deployments": "^0.2.0",
+    "grunt-sass": "*"
+  },
+  "dependencies": {
+    "flexboxgrid": "^6.3.0"
+  }
+}
