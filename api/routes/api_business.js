@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var Businesses = require('../models/businesses');
+var Business = require('../models/business');
 
 // middleware to use for all requests
 router.use(function(req,res,next){
@@ -21,12 +21,12 @@ router.get("/", function(req,res){
 router.route("/all")
     .post(function(req,res){
 // create a new instance of the business Model
-    var businesses = new Businesses();
+    var business = new Business();
     // set the business name ( comes from the request )
-    businesses.name = req.body.name;
+    business.name = req.body.name;
 
         // save the business and check for errs
-        businesses.save(function(err){
+        business.save(function(err){
             if(err){
                 res.send(err);
             }else{
@@ -39,7 +39,7 @@ router.route("/all")
 })
     // get all of the businesss
     .get(function(req,res){
-        Businesses.find(function(err,businesses){
+        Business.find(function(err,businesses){
             if(err){
                 res.send(err);
             }else{
@@ -50,7 +50,7 @@ router.route("/all")
 router.route('/all/:business_id')
     // get a single business
     .get(function(req,res){
-       Businesses.findById(req.params.business_id, function(err,business){
+       Business.findById(req.params.business_id, function(err,business){
           if(err){
               res.send(err);
           }else{
@@ -60,14 +60,14 @@ router.route('/all/:business_id')
     })
     //update business entry
     .put(function(req, res){
-        Businesses.findById(req.params.bear_id, function(err, business){
+        Business.findById(req.params.bear_id, function(err, business){
             if(err){
                 res.send(err);
             }else{
                 businesses.name = req.body.name;
             }
 
-            businesses.save(function(err){
+            business.save(function(err){
                 if(err){
                     res.send(err);
                 }else{
@@ -78,7 +78,7 @@ router.route('/all/:business_id')
     })
     // delete business entry
     .delete(function(req, res){
-        Businesses.remove({
+        Business.remove({
             _id: req.params.business_id
         }, function(err, business){
             if(err){

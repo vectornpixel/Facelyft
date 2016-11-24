@@ -9,13 +9,18 @@ var AvatarSchema = new Schema({
 var ProjectsSchema = new Schema({
         title: String,
         image: String,
-        category: String
+        category: String,
+        description: String,
+        submissions: Number,
+        open: Boolean,
+        consultant: String,
+        views: Number,
 });
 
 var ProfileSchema = new Schema({
     about: String,
-    for_hire: Boolean,
-    views: Number,
+    website: String,
+    social: String,
     projects: [ProjectsSchema]
 
 });
@@ -28,4 +33,4 @@ var BuesinessSchema = new Schema({
         avatar: AvatarSchema
     });
 // export the Schemas and its properties
-module.exports = mongoose.model('Buesiness', BuesinessSchema);
+module.exports = mongoose.model('Business', BuesinessSchema);

@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var users = require('./routes/users');
 
 var route_designers = require('./api/routes/api_designers');
+var route_business = require('./api/routes/api_business');
 var app = express();
 
 
@@ -88,6 +89,7 @@ app.use(function(err, req, res, next) {
 //---------------------------------------------------
 //Register our routes for our api
 app.use('/api/designers',route_designers);
+app.use('/api/business',route_business);
 
 app.listen(port);
 //console.log('App is launching on port :  ' + port);
